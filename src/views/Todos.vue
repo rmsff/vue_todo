@@ -1,6 +1,10 @@
 <template>
 	<div id="todos">
-		<img class="logo" src="../assets/logo.png" alt="logo" />
+		<img
+			class="logo"
+			src="https://res.cloudinary.com/serikoff/image/upload/v1581966959/logo_xtgd4b.png"
+			alt="logo"
+		/>
 		<h1>Todo list</h1>
 		<router-link to="/home">Home page</router-link>
 		<AddItem @add="addItem" />
@@ -28,6 +32,7 @@
 <script>
 import { TodoList } from '../components';
 import { AddItem } from '../components';
+import axios from 'axios';
 import uniqueId from '../utils/helpers/uniqueId';
 
 export default {
@@ -43,9 +48,9 @@ export default {
 	}),
 	mounted() {
 		this.isLoading = true;
-		fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
-			.then(res => res.json())
-			.then(data => {
+		axios
+			.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+			.then(({ data }) => {
 				this.todos = data.reverse().sort(({ completed }) => (completed ? 1 : -1));
 				this.isLoading = false;
 			})
@@ -54,11 +59,6 @@ export default {
 				console.log(err);
 				alert('Error');
 			});
-	},
-	watch: {
-		filter(value) {
-			alert(value);
-		},
 	},
 	computed: {
 		filteredTodos() {
