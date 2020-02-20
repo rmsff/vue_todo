@@ -1,4 +1,11 @@
-# vue_todo
+## vue_todo
+
+This project is a test task and is a todo list.
+Was bootstrapped with [Vue CLI].
+
+##
+
+[Demo link](http://chat-app.website/vue-todo)
 
 ## Project setup
 ```
