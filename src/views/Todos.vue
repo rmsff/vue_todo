@@ -63,8 +63,10 @@ export default {
 	computed: {
 		filteredTodos() {
 			const { filter, todos } = this;
-			if (filter === 'completed') return todos.filter(el => el.completed === true);
-			if (filter === 'notCompleted') return todos.filter(el => el.completed === false);
+			if (filter === 'completed')
+				return todos.filter(({ completed }) => completed === true);
+			if (filter === 'notCompleted')
+				return todos.filter(({ completed }) => completed === false);
 			return todos;
 		},
 	},
@@ -76,7 +78,6 @@ export default {
 			this.todos = [{ ...item, id: uniqueId('', this.todos.length) }, ...this.todos];
 		},
 		completeItem(item) {
-			console.log(item);
 			item.completed = !item.completed;
 			this.todos = this.todos.sort(({ completed }) => (completed ? 1 : -1));
 		},

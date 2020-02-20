@@ -8,9 +8,7 @@
 <script>
 export default {
 	name: 'AddItem',
-	data() {
-		return { textInput: '' };
-	},
+	data: () => ({ textInput: '' }),
 	methods: {
 		onSubmit() {
 			if (this.textInput.length) {

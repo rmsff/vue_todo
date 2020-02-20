@@ -14,9 +14,14 @@
 import { TodoItem } from './';
 
 export default {
-	props: ['todos'],
 	components: {
 		TodoItem,
+	},
+	props: {
+		todos: {
+			type: Array,
+			required: true,
+		},
 	},
 	methods: {
 		removeItem(id) {

@@ -27,7 +27,6 @@ export default {
 			type: Object,
 			required: true,
 		},
-		index: Number,
 	},
 	filters: {
 		itemUpperCase(str) {
