@@ -3,6 +3,8 @@
 This project is a test task and is a todo list.
 Was bootstrapped with [Vue CLI].
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/3a3c4b0bbd21b23c1df0/maintainability)](https://codeclimate.com/github/serikoff/vue_todo/maintainability)
+
 ##
 
 [Demo link](http://chat-app.website/vue-todo)
