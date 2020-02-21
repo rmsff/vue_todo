@@ -1,35 +1,20 @@
 <template>
 	<ul>
-		<TodoItem
-			v-for="item in todos"
-			v-bind:item="item"
-			:key="item.id"
-			@remove="removeItem"
-			@complete="completeItem"
-		/>
+		<TodoItem v-for="item in filteredTodos" v-bind:item="item" :key="item.id" />
 	</ul>
 </template>
 
 <script>
 import { TodoItem } from './';
+import { mapGetters } from 'vuex';
 
 export default {
+	name: 'TodoList',
 	components: {
 		TodoItem,
 	},
-	props: {
-		todos: {
-			type: Array,
-			required: true,
-		},
-	},
-	methods: {
-		removeItem(id) {
-			this.$emit('remove', id);
-		},
-		completeItem(item) {
-			this.$emit('complete', item);
-		},
+	computed: {
+		...mapGetters(['filteredTodos']),
 	},
 };
 </script>

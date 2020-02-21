@@ -1,10 +1,7 @@
 <template>
 	<div>
 		<li>
-			<div
-				:class="{ item: true, item_done: item.completed }"
-				@click="$emit('complete', item)"
-			>
+			<div :class="{ item: true, item_done: item.completed }" @click="handleCompleted">
 				<input type="checkbox" v-model="item.completed" true-checked="checked" />
 				<strong>{{ ` ${item.id}: ` }}</strong>
 				<span>
@@ -12,7 +9,7 @@
 					{{ `${item.completed} ` }}
 				</span>
 			</div>
-			<button class="item__button-rm" @click="$emit('remove', item.id)">
+			<button class="item__button-rm" @click="handleRemove">
 				&times;
 			</button>
 		</li>
@@ -20,12 +17,23 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
 	name: 'TodoItem',
 	props: {
 		item: {
 			type: Object,
 			required: true,
+		},
+	},
+	methods: {
+		...mapMutations(['removeTodo', 'updateСompletion']),
+		handleRemove() {
+			this.removeTodo(this.item.id);
+		},
+		handleCompleted() {
+			this.updateСompletion(this.item);
 		},
 	},
 	filters: {

@@ -1,24 +1,26 @@
 <template>
-	<form @submit.prevent="onSubmit">
+	<form @submit.prevent="handleCreate">
 		<input type="text" placeholder="Enter text" v-model="textInput" />
 		<button type="submit">Create</button>
 	</form>
 </template>
 
 <script>
+import uniqueId from '../utils/helpers/uniqueId';
+
 export default {
 	name: 'AddItem',
 	data: () => ({ textInput: '' }),
 	methods: {
-		onSubmit() {
-			if (this.textInput.length) {
-				const newItem = {
-					id: 'id',
+		handleCreate() {
+			if (this.textInput) {
+				const newRecord = {
+					id: uniqueId('', this.$store.getters.countTodos),
 					title: this.textInput,
 					completed: false,
 				};
-				this.$emit('add', newItem);
 				this.textInput = '';
+				this.$store.commit('updateTodos', [newRecord]);
 			}
 		},
 	},
