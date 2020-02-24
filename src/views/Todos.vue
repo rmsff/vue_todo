@@ -42,7 +42,6 @@ export default {
 	mounted() {
 		if (!this.$store.getters.countTodos) {
 			this.$store.dispatch('fetchTodos');
-			this.isFirstFetchData = false;
 		}
 	},
 	methods: {
